@@ -30,8 +30,9 @@ header('Location: ../index.php');
   <link rel="stylesheet" href="../css/logo.css">
   <link rel="stylesheet" href="../css/abscenter.css">
   <script src="../js/jquery-3.4.1.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
   <script src="../js/validacion.js"></script>
-  <script src="//code.jquery.com/ui/1.12.0-rc.1/jquery-ui.js"></script>
+  
 
 </head>
 <body>
@@ -40,17 +41,17 @@ header('Location: ../index.php');
     	<div class="container">
 			<div class="abs-center">
 			<div id="box">
-				<form class="form-horizontal" action="" method="POST">
+				<form class="form-horizontal" action="" method="POST" id="loginform">
 					<section class="padre">
 						<div class="card">
 							<div class="card-body">
 								<div class="form-group">
 									<h1>Recolector</h1>
-									<input type="text" class="form-control" class="input"  id="username" placeholder="Nro Recolector" required>
+									<input type="text" class="form-control" name="username"  id="username" placeholder="Nro Recolector" required>
 									<small class="form-text text-muted">Ingrese Usuario</small>
 		  						</div>
 								<div class="form-group">
-								<input type="submit" class="button button-primary" value="Log In" id="login"/>
+								<input type="submit" class="loginBtn" value="Login" id="loginBtn"/>
 								<div id="error"></div> 
 								</div>
                 			</div>

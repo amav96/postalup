@@ -1,10 +1,10 @@
 <?php
 session_start();
-print_r($_SESSION);
 if(!empty($_SESSION['login_user']))
 {
 header('Location:..login/loginrecolector.php');
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -73,8 +73,8 @@ header('Location:..login/loginrecolector.php');
             <div class="form-group mx-sm-3 mb-2">
             <!--enviado por ruta ACTI/-->
               <form  action="" method="POST">
-                <input type="text" class="form-control"  name="id_recolector" placeholder="ID recolector" style="float:right;width:150px;height:40px;" value="<?php if(isset($_SESSION['loged_user']))
-							{ echo $_SESSION['id_recolector']; } ?>" >
+                <input type="text" class="form-control"  name="id_recolector" id="id_recolector" value="<?php $_SESSION['query']=$username;?>" placeholder="ID recolector" style="float:right;width:150px;height:40px;" 
+                 >
                 <input type="hidden" class="form-control" name="fecha_orden"style="float:right;width:150px;height:40px;" value="<?php date_default_timezone_set('America/Argentina/Buenos_Aires'); echo date("Y-m-d H:i:s");?>" readonly>
                 <button type="submit" name="ordengenerar" id="ordengenerar" class="btn btn-primary mb-2" style="width:150px;height:40px;">Generar Orden</button>
               

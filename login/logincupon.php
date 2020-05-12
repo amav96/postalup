@@ -21,7 +21,7 @@
 </head>
 <body>
 <?php 
-	SESSION_START();
+	session_start();
 	if(isset($_SESSION['cupon'])) { 
 		header('location:../descargacupon.php');
 	} else { ?>

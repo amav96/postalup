@@ -1,40 +1,27 @@
-
-    $(document).ready(function() 
+$(document).ready(function(){
+   $('#loginform').submit(function(e){
+   e.preventDefault();
+   $.ajax({
+      type: "GET",
+      url: '../javascriptvalidacion/validacionlogin.php',
+      data: $(this).serialize(),
+      success: function(response)
       {
+         var jsonData = JSON.parse(response);
 
-       $('#login').click(function()
-        {
-           var username=$("#username").val();
-           console.log(username)
-           var dataString = 'username='+username;
-           if($.trim(username).length>0)
-           
-        {
-           $.ajax({
-           type: "POST",
-           url: "../javascriptvalidacion/validacionlogin.php",
-           data: dataString,
-           cache: false,
-           beforeSend: function(){ $("#login").val('Connecting...');},
-           success: function(data){
-           if(data)
-        {
-           $("body").load("../datoscliente.php").hide().fadeIn(1500).delay(6000);
-           //or
-           window.location.href = "../datoscliente.php";
-        }
-           else
-        {
-
-           $("#login").val('Login')
-           $("#error").html("<span style='color:#cc0000'>Error:</span> Invalid username . ");
-           }
-        }
-    });
-
-           }
-           return false;
-     });
-
+         //elusuario es logueado satisfactoriamente en el back end
+         // redirrecciona
+         if (jsonData.success=="1")
+         {
+             location.href = '../datoscliente.php';
+             
+             $("input[name='id_recolector']").val(jsondata.success)
+         }
+         else
+         {
+           alert('Invalid Credenciales!');
+         }
+      }
+   });
+ });
 });
-
