@@ -2,7 +2,7 @@ $(document).ready(function(){
    $('#loginform').submit(function(e){
    e.preventDefault();
    $.ajax({
-      type: "GET",
+      type: "POST",
       url: '../javascriptvalidacion/validacionlogin.php',
       data: $(this).serialize(),
       success: function(response)
@@ -15,7 +15,6 @@ $(document).ready(function(){
          {
              location.href = '../datoscliente.php';
              
-             $("input[name='id_recolector']").val(jsondata.success)
          }
          else
          {
