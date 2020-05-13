@@ -5,6 +5,8 @@ if(!empty($_SESSION['login_user']))
 {
 header('Location:..login/loginrecolector.php');
 }
+require_once "conectar/bd.php";
+require_once "procesos/metodoMostrar.php"
 
 ?>
 
@@ -62,43 +64,55 @@ header('Location:..login/loginrecolector.php');
         <div class="row" style="position:inherit;color:black;">
           <div class="col-sm-6" style="position:inherit;">
             <b><h2>Panel Recolector</b></h2>
-					</div>
+          </div>
+          
           <br>
           <!--formulario generar orden -->
           <section>
-          <div class="form-group">
+          
             <div class="form-group mx-sm-3 mb-2">
-              <a href="#addProductModal" class="btn btn-success" data-toggle="modal" style="width:150px;height:40px;"><i class="material-icons" >&#xE147;</i> <span>Agregar Equipo</span></a>
+              <a href="#addProductModal" class="btn btn-success" data-toggle="modal" ><i class="material-icons" >&#xE147;</i>Agregar Equipo</a>
             </div>   
-</div>       
-            <div class="form-group mx-sm-3 mb-2">
-            <?php require("php/generarorden.php") ?> 
-            <!--enviado por ruta ACTI/-->
-              <form  action="" method="POST">
-                <input type="text" class="form-control"  name="id_recoleorden" id="id_recoleorden" value="<?php if(isset($_SESSION['username']))
-							{ echo $_SESSION['username']['username']; } ?>" placeholder="ID recolector" style="float:right;width:150px;height:40px;" 
-                 >
-                <input type="hidden" class="form-control" name="fecha_orden"style="float:right;width:150px;height:40px;" value="<?php date_default_timezone_set('America/Argentina/Buenos_Aires'); echo date("Y-m-d H:i:s");?>" readonly>
-                <button type="submit" name="ordengenerar" id="ordengenerar" class="btn btn-primary mb-2" style="width:150px;height:40px;">Generar Orden</button>
-              
-              </form>
-            </div> 
+             <div class="form-group mx-sm-3 mb-2">
+               <form  action="" method="POST">
+                 <input type="text" class="form-control"  name="id_recoleorden" id="id_recoleorden" value="<?php if(isset($_SESSION['username']))
+							    { echo $_SESSION['username']['username']; } ?>" placeholder="ID recolector" style="width:100px;height:25px;" >
+                   </div> 
+                   <div class="form-group mx-sm-3 mb-2">
+                   <input type="hidden" class="form-control" name="fecha_orden" value="<?php date_default_timezone_set('America/Argentina/Buenos_Aires'); echo date("Y-m-d H:i:s");?>" readonly>
+                     <button type="submit" name="ordengenerar" id="ordengenerar" class="btn btn-primary" style="width:143px;">Generar Orden</button>
+                     </div> 
+                </form>
+            
           </section>
 
           <!--tabla generar orden p -->
 
           
-            <table id="table1" class='table table-responsive'>
+            <table id="table1" style="border-collapse: collapse;" class='table table-responsive'>
               <thead>
                 <tr>
                   <th scope='col'>Nro.Orden</th>
                   </tr>
                     </thead>
+                    <?php
+                     
+                    $obj = new metodos();
+                    $sql = "SELECT id from ordenes ORDER BY id DESC LIMIT 1 ";
+                    $datos=$obj->mostrarDatos($sql);
+                    
+                    foreach ($datos as $key){
+                    
+                    ?>
                     <tbody>
                       <tr>
-                 <th id="order">
-                </tr>
+                      <th id="order"> <?php echo $key['id'] ?></th>
+                      </tr>
               </thead>
+              <?php
+                }
+                     
+              ?>
             </table>
           
         </div>
@@ -108,9 +122,9 @@ header('Location:..login/loginrecolector.php');
       <div class='col-sm-4 pull-right' style="position:inherit;">
         <div id="custom-search-input" style="position:inherit;">
           <div class="input-group col-md-12" style="position:inherit;">
-            <input type="text" class="form-control" placeholder="Buscar"  id="q" style="position:inherit;"/>
+            <input type="text" class="form-control" placeholder="Buscar Cliente"  id="q" style="position:inherit;height:27.5px;"/>
             <span class="input-group-btn">
-              <button class="btn btn-info" type="button" onclick="load(1);">
+              <button class="btn btn-danger" type="button" onclick="load(1);">
                 <span class="glyphicon glyphicon-search"></span>
               </button>
             </span>    
@@ -136,28 +150,6 @@ header('Location:..login/loginrecolector.php');
 	<!-- Delete Modal HTML -->
 	<?php include("html/modal_delete.php");?>
 
-<!--OBTENGO VALOR DE LA SESION DEL LADO DEL SERVIDOR 
-<script> 
-$(function(){
-  var idValueQueNecesito = $('#order').text(); // esto agarra tu numero de orden 
-  $(".").on('click', '.editar', function () {
-    $('#idValueQueNecesito').val($().closest("tr").find(".order").text());
-    $('#editProductModal').modal('show');
-
-    console.log(idValueQueNecesito);
-});
-});
-         $.ajax({
-         method: "POST",
-         url: "html/modal_edit.php",
-         data: {"idValueQueNecesito":idValueQueNecesito},
-         dataType: "json"})
-         .done(function(data){ 
-         console.log(data); // esto es lo que yo te había dicho cierto
-         $("input[name=edit_id_orden").text(data.edit_id_orden)
-  });    
-
-</script>-->
 <!-- cerrar sesion despues de cierto tiempo-->
   <script type="text/javascript">
 	function e(q) {
@@ -169,7 +161,7 @@ function inactividad() {
 }
 var t=null;
 function contadorInactividad() {
-    t=setTimeout("inactividad()",800000);
+    t=setTimeout("inactividad()",600000);
 }
 window.onblur=window.onmousemove=function() {
     if(t) clearTimeout(t);

@@ -83,14 +83,14 @@
 						<div class="form-group">
 							<label><strong>Recolector</strong></label>
 							<input class="form-control" type="text" name="id_recolector_password" id="id_recolector_password" 
-							value="<?php if(isset($_SESSION['logged_user']))
-							{ echo $_SESSION['id_recolector']; } ?>" required readonly>
+							value="<?php if(isset($_SESSION['username']))
+							    { echo $_SESSION['username']['username']; } ?>" required readonly>
 						</div>
 						<div class="form-group">
 							
 							<input class="form-control" type="hidden" name="id_recolector_2" id="id_recolector_2" 
-							value="<?php if(isset($_SESSION['logged_user']))
-							{ echo $_SESSION['id_recolector']; } ?>" required>
+							value="<?php if(isset($_SESSION['username']))
+							    { echo $_SESSION['username']['username']; } ?>" required>
 						
 						</div>
 						

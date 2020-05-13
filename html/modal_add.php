@@ -143,7 +143,8 @@ $(function(){
 						</div>
 						<div class="form-group">
 							<label><strong>ID Recolector</strong></label>
-							<input type="text" name="id_recolector"  id="id_recolector" class="form-control"  required>
+							<input type="text" name="id_recolector"  id="id_recolector" class="form-control" value="<?php if(isset($_SESSION['username']))
+							    { echo $_SESSION['username']['username']; } ?>"  required>
 							
 						</div>
 					</div>
