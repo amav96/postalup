@@ -74,13 +74,13 @@ require_once "procesos/metodoMostrar.php"
               <a href="#addProductModal" class="btn btn-success" data-toggle="modal" ><i class="material-icons" >&#xE147;</i>Agregar Equipo</a>
             </div>   
              <div class="form-group mx-sm-3 mb-2">
-               <form  action="" method="POST">
+               <form  action="procesos/insertar.php" method="POST">
                  <input type="text" class="form-control"  name="id_recoleorden" id="id_recoleorden" value="<?php if(isset($_SESSION['username']))
 							    { echo $_SESSION['username']['username']; } ?>" placeholder="ID recolector" style="width:100px;height:25px;" >
                    </div> 
                    <div class="form-group mx-sm-3 mb-2">
-                   <input type="hidden" class="form-control" name="fecha_orden" value="<?php date_default_timezone_set('America/Argentina/Buenos_Aires'); echo date("Y-m-d H:i:s");?>" readonly>
-                     <button type="submit" name="ordengenerar" id="ordengenerar" class="btn btn-primary" style="width:143px;">Generar Orden</button>
+                   <input type="hidden" class="form-control" name="fecha_orden" id="fecha_orden" value="<?php date_default_timezone_set('America/Argentina/Buenos_Aires'); echo date("Y-m-d H:i:s");?>" readonly>
+                     <button class="btn btn-primary" style="width:143px;">Generar Orden</button>
                      </div> 
                 </form>
             
