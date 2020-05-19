@@ -68,7 +68,7 @@ if(!isset($_SESSION['administracion'])){
         <form  action="../admin/administracion.php" method="POST" style="margin:0; float:left;">
         <div class="form-group mx-sm-3 mb-2">
          
-         <input type="text" class="form-control"  name="emaila" id="emaila" placeholder="email" style="width:100px;height:40px">
+         <input type="text" class="form-control"  name="emaila" id="emaila" placeholder="email" style="width:150px;height:40px">
          <button type="submit" name="emailaa" id="emaila" class="btn btn-info"><i class="fas fa-search"></i></button>
       </div>
 

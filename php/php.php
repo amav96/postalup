@@ -12,7 +12,7 @@ if(!isset($_SESSION['administracion'])){
    $seriea=$_POST['seriea'];
    $acentos = $conn->query("SET NAMES 'utf8'");    
    $query=mysqli_query($conn,"SELECT estado_pac,horario_pac,direccion,localidad,codigo_postal,id_orden,serie,identificacion,tarjeta,nombre_cliente,
-   horario_rec,estado_rec,cable_hdmi,cable_av,fuente,control_1, id_recolector,otrosaccesorios
+   horario_rec,estado_rec,cable_hdmi,cable_av,fuente,control_1, id_recolector_2,otrosaccesorios
     FROM express where serie='$seriea'");
    
  if($seriea=$query)
@@ -57,7 +57,7 @@ if(!isset($_SESSION['administracion'])){
    <tbody>
   <tr>
     <td>".$consulta['id_orden']."</td> 
-    <td>".$consulta['id_recolector']."</td>
+    <td>".$consulta['id_recolector_2']."</td>
     <td>".$consulta['serie']."</td>          
     <td>".$consulta['identificacion']."</td> 
     <td>".$consulta['direccion']."</td> 
@@ -321,7 +321,7 @@ if(isset($_POST['fechaconfirmadosaa']))
   $fechaconfirmadosa=$_POST['fechaconfirmadosa'];
   $acentos = $conn->query("SET NAMES 'utf8'");    
   $query=mysqli_query($conn,"SELECT estado_pac,horario_pac,direccion,localidad,codigo_postal,id_orden,serie,identificacion,tarjeta,
-  horario_rec,nombre_cliente,estado_rec,cable_hdmi,cable_av,fuente,control_1,id_recolector
+  horario_rec,nombre_cliente,estado_rec,cable_hdmi,cable_av,fuente,control_1,id_recolector_2
    FROM express where horario_rec LIKE '%$fechaconfirmadosa%'");
   
 if($fechaconfirmadosa=$query)
@@ -363,7 +363,7 @@ echo
   <tbody>
  <tr>
    <td>".$consulta['id_orden']."</td> 
-   <td>".$consulta['id_recolector']."</td>
+   <td>".$consulta['id_recolector_2']."</td>
    <td>".$consulta['serie']."</td>          
    <td>".$consulta['identificacion']."</td>
    <td>".$consulta['direccion']."</td> 

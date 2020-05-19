@@ -86,9 +86,9 @@ if(!isset($_SESSION['administracion'])){
          <form action="../admin/xfiltrox.php" method="POST" class="form-inline" style="float:left;" >
   <div class="form-group">
   <select class="form-control" name="estado1" id="estado1" style="float:left; width:130px;height:38px;">
-            <option value="PACTADO">PACTADO</option>
-            <option value="A-CONFIRMAR">A CONFIRMAR</option>
             <option value="RECUPERADO">RECUPERADO</option>
+            <option value="A-CONFIRMAR">A CONFIRMAR</option>
+            <option value="PACTADO">PACTADO</option>
             <option value="RECHAZADA">RECHAZADA</option>
             <option value="NO-EXISTE-NUMERO">NO EXISTE NUMERO</option>
             <option value="NO-RESPONDE">NO RESPONDE</option>
@@ -136,9 +136,9 @@ if(isset($_POST['consultar']))
      $fecha_asignado=$_POST['fecha_asignado'];
      $id_recolector=$_POST['id_recolector'];
      $acentos = $conn->query("SET NAMES 'utf8'");
-       $sql=mysqli_query($conn,"SELECT estado_pac,estado_rec,operador,id_recolector,fecha_asignado,horario_rec,identificacion,nombre_cliente,
-      serie,tarjeta,equipo,codigo_postal,direccion,localidad
-       from express where id_recolector='$id_recolector' and fecha_asignado='$fecha_asignado'");
+       $sql=mysqli_query($conn,"SELECT estado_pac,estado_rec,operador,id_recolector_2,horario_pac,horario_rec,identificacion,nombre_cliente,
+      serie,tarjeta,equipo,codigo_postal,direccion,localidad,id_orden
+       from express where id_recolector_2='$id_recolector' and horario_rec like '%$fecha_asignado%'");
 
        if($id_recolector and $fecha_asignado=$sql)
        {
@@ -149,12 +149,13 @@ if(isset($_POST['consultar']))
       <table class='table table-striped table-hover'>
 <thead>
     <tr>
-    <th scope='col'>ESTADO.PAC</th>
+    <th scope='col'>Orden</th>
     <th scope='col'>ESTADO.REC</th>
+    <th scope='col'>HORARIO REC</th>
     <th scope='col'>OPERADOR</th>
     <th scope='col'>ID.RECOLECTOR</th>
-    <th scope='col'>FECHA.ASIGNADO</th>
-    <th scope='col'>HORARIO.REC</th>
+    <th scope='col'>ESTADO.PAC</th>
+    <th scope='col'>HORARIO.PAC</th>
     <th scope='col'>IDENTIFICACION</th>
     <th scope='col'>NOMBRE.C</th>
     <th scope='col'>SERIE</th>
@@ -176,12 +177,13 @@ if(isset($_POST['consultar']))
       "
          <tbody>
         <tr>
-          <td>".$consulta['estado_pac']."</td>          
+          <td>".$consulta['id_orden']."</td>
           <td>".$consulta['estado_rec']."</td>  
-          <td>".$consulta['operador']."</td>  
-          <td>".$consulta['id_recolector']."</td>
-          <td>".$consulta['fecha_asignado']."</td>     
           <td>".$consulta['horario_rec']."</td>
+          <td>".$consulta['operador']."</td>  
+          <td>".$consulta['id_recolector_2']."</td>
+          <td>".$consulta['estado_pac']."</td>          
+          <td>".$consulta['horario_pac']."</td>     
           <td>".$consulta['identificacion']."</td>
           <td>".$consulta['nombre_cliente']."</td>
           <td>".$consulta['serie']."</td>
@@ -207,9 +209,9 @@ if(isset($_POST['consultar1']))
      $fecha3=$_POST['fecha3'];
      $fecha2=$_POST['fecha2'];
      $acentos = $conn->query("SET NAMES 'utf8'");
-       $sql=mysqli_query($conn,"SELECT estado_pac,estado_rec,operador,id_recolector,fecha_asignado,horario_rec,identificacion,nombre_cliente,
-       serie,tarjeta,equipo,codigo_postal,direccion,localidad
-       from express WHERE fecha_asignado BETWEEN '$fecha2' AND '$fecha3'");
+       $sql=mysqli_query($conn,"SELECT estado_pac,estado_rec,operador,id_recolector_2,horario_pac,horario_rec,identificacion,nombre_cliente,
+       serie,tarjeta,equipo,codigo_postal,direccion,localidad,id_orden
+       from express WHERE horario_rec BETWEEN '$fecha2' AND '$fecha3'");
 
        if($fecha2 or $fecha3)
        {
@@ -220,12 +222,13 @@ if(isset($_POST['consultar1']))
       <table class='table table-striped table-hover'>
 <thead>
     <tr>
-    <th scope='col'>ESTADO.PAC</th>
+    <th scope='col'>ORDEN</th>
     <th scope='col'>ESTADO.REC</th>
+    <th scope='col'>HORARIO.REC</th>
     <th scope='col'>OPERADOR</th>
     <th scope='col'>ID.RECOLECTOR</th>
-    <th scope='col'>FECHA.ASIGNADO</th>
-    <th scope='col'>HORARIO.REC</th>
+    <th scope='col'>ESTADO.PAC</th>
+    <th scope='col'>HORARIO PAC</th>
     <th scope='col'>IDENTIFICACION</th>
     <th scope='col'>NOMBRE.C</th>
     <th scope='col'>SERIE</th>
@@ -246,12 +249,13 @@ if(isset($_POST['consultar1']))
       "
          <tbody>
         <tr>
-          <td>".$consulta['estado_pac']."</td>          
+          <td>".$consulta['id_orden']."</td> 
           <td>".$consulta['estado_rec']."</td>  
-          <td>".$consulta['operador']."</td>  
-          <td>".$consulta['id_recolector']."</td>
-          <td>".$consulta['fecha_asignado']."</td>     
           <td>".$consulta['horario_rec']."</td>
+          <td>".$consulta['operador']."</td>  
+          <td>".$consulta['id_recolector_2']."</td>
+          <td>".$consulta['horario_pac']."</td>     
+          <td>".$consulta['estado_pac']."</td>          
           <td>".$consulta['identificacion']."</td>
           <td>".$consulta['nombre_cliente']."</td>
           <td>".$consulta['serie']."</td>
@@ -278,9 +282,7 @@ if(isset($_POST['consultar2']))
      $fecha4=$_POST['fecha4'];
      $fecha5=$_POST['fecha5'];
      $acentos = $conn->query("SET NAMES 'utf8'");
-       $sql=mysqli_query($conn,"SELECT estado_pac,estado_rec,operador,id_recolector,fecha_asignado,horario_rec,identificacion,nombre_cliente,
-      serie,tarjeta,equipo,codigo_postal,direccion,localidad
-       from express WHERE estado_pac='$estado1' and fecha_asignado BETWEEN '$fecha4' AND '$fecha5'");
+       $sql=mysqli_query($conn,"SELECT estado_pac,estado_rec,operador,id_recolector_2,horario_pac,horario_rec,identificacion,nombre_cliente, serie,tarjeta,equipo,codigo_postal,direccion,localidad,id_orden from express WHERE estado_rec='$estado1' and horario_rec BETWEEN '$fecha4%' AND '$fecha5%'");
 
        if($estado1 xor $fecha4 xor $fecha5 =$sql)
        {
@@ -291,12 +293,13 @@ if(isset($_POST['consultar2']))
       <table class='table table-striped table-hover'>
 <thead>
     <tr>
-    <th scope='col'>ESTADO.PAC</th>
+    <th scope='col'>ORDEN</th>
     <th scope='col'>ESTADO.REC</th>
+    <th scope='col'>HORARIO.REC</th>
     <th scope='col'>OPERADOR</th>
     <th scope='col'>ID.RECOLECTOR</th>
-    <th scope='col'>FECHA.ASIGNADO</th>
-    <th scope='col'>HORARIO.REC</th>
+    <th scope='col'>ESTADO.PAC</th>
+    <th scope='col'>HORARIO PAC</th>
     <th scope='col'>IDENTIFICACION</th>
     <th scope='col'>NOMBRE.C</th>
     <th scope='col'>SERIE</th>
@@ -317,12 +320,13 @@ if(isset($_POST['consultar2']))
       "
          <tbody>
         <tr>
-          <td>".$consulta['estado_pac']."</td>          
+          <td>".$consulta['id_orden']."</td>
           <td>".$consulta['estado_rec']."</td>  
-          <td>".$consulta['operador']."</td>  
-          <td>".$consulta['id_recolector']."</td>
-          <td>".$consulta['fecha_asignado']."</td>     
           <td>".$consulta['horario_rec']."</td>
+          <td>".$consulta['operador']."</td>  
+          <td>".$consulta['id_recolector_2']."</td>
+          <td>".$consulta['estado_pac']."</td>          
+          <td>".$consulta['horario_pac']."</td>     
           <td>".$consulta['identificacion']."</td>
           <td>".$consulta['nombre_cliente']."</td>
           <td>".$consulta['serie']."</td>
