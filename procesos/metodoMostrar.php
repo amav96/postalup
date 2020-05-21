@@ -21,6 +21,31 @@
           
 
      }
+
+     public function mostrarOrden($status){
+        if ($status==1) {
+            $metodoconectar = new conectar();
+            $conexion=$metodoconectar->conexion();
+
+             $sql="SELECT id FROM ordenes order by id desc limit 1";
+             $resultados=mysqli_query($conexion,$sql);
+             if ($resultados) {
+                 if ($resultados->num_rows > 0) {
+                     while ($row= mysqli_fetch_array($resultados)) {
+                         $ret = $row['id'];
+                     }
+                     mysqli_free_result($resultados);
+                 }
+                 else{
+                    $ret = 0;
+                 }
+             }else{
+                $ret = 0;
+             }
+        }else{ $ret = ''; }
+
+        return $ret;
+     }
      
  }
 

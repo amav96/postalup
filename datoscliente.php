@@ -80,7 +80,7 @@ require_once "procesos/metodoMostrar.php"
                    </div> 
                    <div class="form-group mx-sm-3 mb-2">
                    <input type="hidden" class="form-control" name="fecha_orden" id="fecha_orden" value="<?php date_default_timezone_set('America/Argentina/Buenos_Aires'); echo date("Y-m-d H:i:s");?>" readonly>
-                     <button class="btn btn-primary" style="width:143px;">Generar Orden</button>
+                     <button class="btn btn-primary" name="ordengenerar" style="width:143px;">Generar Orden</button>
                      </div> 
                 </form>
             
@@ -88,32 +88,27 @@ require_once "procesos/metodoMostrar.php"
 
           <!--tabla generar orden p -->
 
-          
+          <?php if (isset($_REQUEST['status'])): ?>
+            
             <table id="table1" style="border-collapse: collapse;" class='table table-responsive'>
               <thead>
                 <tr>
                   <th scope='col'>Nro.Orden</th>
                   </tr>
                     </thead>
-                    <?php
-                     
-                    $obj = new metodos();
-                    $sql = "SELECT id from ordenes ORDER BY id DESC LIMIT 1 ";
-                    $datos=$obj->mostrarDatos($sql);
-                    
-                    foreach ($datos as $key){
-                    
-                    ?>
                     <tbody>
                       <tr>
-                      <th id="order"> <?php echo $key['id'] ?></th>
+                      <th id="order">
+                        <?php
+                          if (isset($_REQUEST['status'])) { $status=1; }else{ $status=0; }
+                          $obj = new metodos(); 
+                          echo $obj->mostrarOrden($status);
+                        ?>
+                     </th>
                       </tr>
               </thead>
-              <?php
-                }
-                     
-              ?>
             </table>
+          <?php endif ?>  
           
         </div>
       </div>
@@ -172,18 +167,11 @@ window.onblur=window.onmousemove=function() {
 <script>
 	$(".btn-success").click(function(){
 
-$("input[name=id_orden]").val($("#order").text());
+$("input[name=id_orden]").val($("#order").text().trim());
 
 });
 </script>
 
-<script>
-	$(".btn-success").click(function(){
-
-$("input[name=id_orden]").val($("#order").text());
-
-});
-</script>
 
 </script>
 	<script src="js/script.js"></script>

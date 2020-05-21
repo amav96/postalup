@@ -11,8 +11,9 @@
   $obj = new metodos();
   
   if($obj->insertarOrden($datos)==1){
-      header("location:../datoscliente.php");
-  }else {
+      header("location:../datoscliente.php?status=generado");
+  }
+  else {
       echo "fallo orden";
       
   }
