@@ -38,30 +38,42 @@ header('Location: ../index.php');
 <body>
 
 <div class="text-center">
-    	<div class="container">
-			<div class="abs-center">
-			<div id="box">
-				<form class="form-horizontal" action="" method="POST" id="loginform">
-					<section class="padre">
-						<div class="card">
-							<div class="card-body">
-								<div class="form-group">
-									<h1>Recolector</h1>
-									<input type="text" class="form-control" name="username"  id="username" placeholder="Nro Recolector" required>
-									<small class="form-text text-muted">Ingrese Usuario</small>
-		  						</div>
-								<div class="form-group">
-								<input type="submit" class="loginBtn" value="Login" id="loginBtn"/>
-								<div id="error"></div> 
-								</div>
-                			</div>
-              			</div>
-              		</section>
-				</form>
-				</div>
-			</div>
+    <div class="container">
+	 <div class="abs-center">
+             <form class="form-horizontal" action="" id="loginform" method="POST">
+             <section class="padre">
+              <div class="card" >
+                <div class="card-body ">
+		             <div class="form-group"><div class="list-group-item">
+   
+  
+					 <img src="../img/logo.png" style="width:70px;heigth:70px;display:block;
+               margin:auto" alt="">
+			   </div>
+			   <div class="form-group">
+					 </div>
+					 <h1>Recolector</h1>
+					 
+					 
+		       
+			   <input type="text" class="form-control" name="username" id="username " required>
+				 <small class="form-text text-muted">Ingrese su Nro de Recolector</small>
+		  </div>
+			<div class="form-group">
+			 
+			  <button type="submit" class="loginBtn btn btn-primary" value="Login" id="loginBtn">Ingresar</button>
+		  
+		             </div>
+                </div>
+              </div>
+             
+		</form>
 		</div>
-	</div>
-
+		</div>
+		</div>
 </body>
 </html>
+
+
+
+</body>

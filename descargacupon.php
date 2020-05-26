@@ -2,7 +2,7 @@
 //include 'conexion.php';
 
 ?>
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -116,4 +116,4 @@ $(document).ready(function(){
 	<script src="js/menu.js"></script>
 
 </body>
-</html                            		                            
+</html>-->                            		                            

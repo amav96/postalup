@@ -128,7 +128,8 @@ require_once "procesos/metodoMostrar.php"
         </div>
         <br>
         <form action="enviarcliente.php" method="POST" >
-          <button class="btn btn-primary mb-2" style="margin:;float:left;">Enviar cupon a cliente</button>
+          <button class="btn btn-primary mb-2" name="mensaje" style="margin:;float:left">Enviar cupon a cliente</button>
+
 	       </form>
       </div>
 			<div class='clearfix'></div>

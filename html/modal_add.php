@@ -17,6 +17,14 @@ $(function(){
 			 var elemento = document.getElementById("identificacion").value
              if (elemento == ""){
              alert("Debes llenar el campo identificacion.")
+			 return false}
+			 var elemento = document.getElementById("id_orden").value
+             if (elemento == ""){
+             alert("Debes Generar un Nro de orden.")
+			 return false}
+			 var elemento = document.getElementById("id_orden_pass").value
+             if (elemento == ""){
+             alert("Debes Generar un Nro de orden.")
              return false}
 
         var id_recolector = $('#id_recolector').val();
@@ -138,8 +146,8 @@ $(function(){
 						</div>
 						
 						<div class="form-group">
-							<label><strong>Nro Orden</strong></label>
-							<input type="text" name="id_orden"  id="id_orden" class="form-control"  required>
+							
+							<input type="hidden" name="id_orden"  id="id_orden" class="form-control"  required>
 							
 						</div>
 
@@ -153,7 +161,8 @@ $(function(){
 							    { echo $_SESSION['username']['username']; } ?>"  required>
 							
 						</div>
-						<input type="text" name="id_orden_pass"  id="id_orden_pass" class="form-control"  required>
+						<label><strong>Nro Orden</strong></label>
+						<input type="text" name="id_orden_pass"  id="id_orden_pass" class="form-control"  required readonly>
 					</div>
 					<div class="modal-footer">
 					   <div class="form-group">

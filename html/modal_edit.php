@@ -1,5 +1,4 @@
 
-
 	<div id="editProductModal" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -72,23 +71,22 @@
 						
 						<div class="form-group">
 							<label><strong>Nro Orden</strong></label>
-							<input type="text" name="edit_id_orden" id="idValueQueNecesito" class="form-control" required readonly>
+							<input type="text" name="edit_id_orden" id="idValueQueNecesito" class="form-control" readonly required>
+						</div>
+						<div class="form-group">
+							
+							<input type="hidden" name="edit_id_orden_pass" id="idValueQueNecesito2" class="form-control" required>
 						</div>
 						
 						<div class="form-group">
 							
 							<input type="hidden" class="form-control" type="text" name="horario_rec"
-							 value="<?php date_default_timezone_set('America/Argentina/Buenos_Aires'); echo date("Y-m-d H:i:s");?>" readonly>
+							 value="<?php date_default_timezone_set('America/Argentina/Buenos_Aires'); echo date("Y-m-d H:i:s");?>" readonly readonly>
 						</div>
-						<div class="form-group">
-							<label><strong>Recolector</strong></label>
-							<input class="form-control" type="text" name="id_recolector_password" id="id_recolector_password" 
-							value="<?php if(isset($_SESSION['username']))
-							    { echo $_SESSION['username']['username']; } ?>" required readonly>
-						</div>
+						
 						<div class="form-group">
 							
-							<input class="form-control" type="hidden" name="id_recolector_2" id="id_recolector_2" 
+							<input class="form-control" type="text" name="id_recolector_2" id="id_recolector_2" 
 							value="<?php if(isset($_SESSION['username']))
 							    { echo $_SESSION['username']['username']; } ?>" required>
 						
@@ -98,7 +96,7 @@
 					</div>
 					<div class="modal-footer">
 						<input type="button" class="btn btn-danger" data-dismiss="modal" value="Salir">
-						<input type="submit" class="btn btn-info" value="Confirmar">
+						<input type="submit"  class="btn btn-info" value="Confirmar">
 					</div>
 				</form>
 			</div>

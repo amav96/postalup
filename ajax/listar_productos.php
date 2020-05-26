@@ -157,6 +157,7 @@ if($action == 'ajax'){
 	$(".open-modal").click(function(){
 
 $("input[name=edit_id_orden]").val($("#order").text().trim());
+$("input[name=edit_id_orden_pass]").val($("#order").text().trim());
 
 });
 </script>	  

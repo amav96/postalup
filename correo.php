@@ -13,8 +13,7 @@ require 'phpmailer/PHPMailer/src/SMTP.php';
 enviarEmail();
 
 function enviarEmail(){
-  if(isset($_POST['id_orden']) && isset($_POST['identificacion_cliente']) 
-  && isset($_POST['email']) && isset($_POST['asunto']) && isset($_POST['cod_orden'])){
+  if(isset($_POST['email']) && isset($_POST['asunto']) && isset($_POST['cod_orden'])){
      //mandar correo
      $id_orden=$_POST['id_orden'];
      $identificacion_cliente=$_POST['identificacion_cliente'];
@@ -55,295 +54,166 @@ function enviarEmail(){
          $mail->isHTML(true); 
          $mail->CharSet = 'UTF-8';                                 // Set email format to HTML
          $mail->Subject = ($_POST['asunto']);
-         $mail->Body ='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-         <html xmlns:v="urn:schemas-microsoft-com:vml">
+         $mail->Body ='<!DOCTYPE html>
+         <html>
          
          <head>
-             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-             <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;" />
-           
-             
-             <title>Remito Online</title>
-         
+             <title></title>
+             <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+             <meta name="viewport" content="width=device-width, initial-scale=1">
+             <meta http-equiv="X-UA-Compatible" content="IE=edge" />
              <style type="text/css">
-                 body {
-                     width: 100%;
-                     background-color: #ffffff;
-                     margin: 0;
-                     padding: 0;
-                     -webkit-font-smoothing: antialiased;
-                     mso-margin-top-alt: 0px;
-                     mso-margin-bottom-alt: 0px;
-                     mso-padding-alt: 0px 0px 0px 0px;
+                 body,
+                 table,
+                 td,
+                 a {
+                     -webkit-text-size-adjust: 100%;
+                     -ms-text-size-adjust: 100%;
                  }
-                 
-                 p,
-                 h1,
-                 h2,
-                 h3,
-                 h4 {
-                     margin-top: 0;
-                     margin-bottom: 0;
-                     padding-top: 0;
-                     padding-bottom: 0;
+         
+                 table,
+                 td {
+                     mso-table-lspace: 0pt;
+                     mso-table-rspace: 0pt;
                  }
-                 
-                 span.preheader {
-                     display: none;
-                     font-size: 1px;
+         
+                 img {
+                     -ms-interpolation-mode: bicubic;
                  }
-                 
-                 html {
-                     width: 100%;
-                 }
-                 
-                 table {
-                     font-size: 14px;
+         
+                 img {
                      border: 0;
+                     height: auto;
+                     line-height: 100%;
+                     outline: none;
+                     text-decoration: none;
                  }
-               
-                 
-                 @media only screen and (max-width: 640px) {
-                     
-                     .main-header {
-                         font-size: 20px !important;
-                     }
-                     .main-section-header {
-                         font-size: 28px !important;
-                     }
-                     .show {
-                         display: block !important;
-                     }
-                     .hide {
+         
+                 table {
+                     border-collapse: collapse !important;
+                 }
+         
+                 body {
+                     height: 100% !important;
+                     margin: 0 !important;
+                     padding: 0 !important;
+                     width: 100% !important;
+                 }
+         
+                 a[x-apple-data-detectors] {
+                     color: inherit !important;
+                     text-decoration: none !important;
+                     font-size: inherit !important;
+                     font-family: inherit !important;
+                     font-weight: inherit !important;
+                     line-height: inherit !important;
+                 }
+         
+                 @media screen and (max-width: 480px) {
+                     .mobile-hide {
                          display: none !important;
                      }
-                     .align-center {
-                         text-align: center !important;
-                     }
-                     .no-bg {
-                         background: none !important;
-                     }
-                     
-                     .main-image img {
-                         width: 440px !important;
-                         height: auto !important;
-                     }
-                    
-                     .divider img {
-                         width: 440px !important;
-                     }
-                  
-                     .container590 {
-                         width: 440px !important;
-                     }
-                     .container580 {
-                         width: 400px !important;
-                     }
-                     .main-button {
-                         width: 220px !important;
-                     }
-                    
-                     .section-img img {
-                         width: 320px !important;
-                         height: auto !important;
-                     }
-                     .team-img img {
-                         width: 100% !important;
-                         height: auto !important;
+         
+                     .mobile-center {
+                         text-align: left !important;
                      }
                  }
-                 
-                 @media only screen and (max-width: 479px) {
-                     
-                     .main-header {
-                         font-size: 18px !important;
-                     }
-                     .main-section-header {
-                         font-size: 26px !important;
-                     }
-                     
-                     .divider img {
-                         width: 280px !important;
-                     }
-                     
-                     .container590 {
-                         width: 280px !important;
-                     }
-                     .container590 {
-                         width: 280px !important;
-                     }
-                     .container580 {
-                         width: 260px !important;
-                     }
-                     
-                     .section-img img {
-                         width: 280px !important;
-                         height: auto !important;
-                     }
+         
+                 div[style*="margin: 16px 0;"] {
+                     margin: 0 !important;
                  }
              </style>
-           
-         </head>
          
-         
-         <body class="respond" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
-           
-             <table style="display:none!important;">
+         <body style="margin: 0 !important; padding: 0 !important; background-color: #eeeeee;" bgcolor="#eeeeee">
+             <div style="display: none; font-size: 1px; color: #fefefe; line-height: 1px; font-family: Open Sans, Helvetica, Arial, sans-serif; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden;">
+                 Remito Electronico.
+             </div>
+             <table border="0" cellpadding="0" cellspacing="0" width="100%">
                  <tr>
-                     <td>
-                         <div style="overflow:hidden;display:none;font-size:1px;color:#ffffff;line-height:1px;font-family:Arial;maxheight:0px;max-width:0px;opacity:0;">
-                             Descargar Remito Online 
-                         </div>
-                     </td>
-                 </tr>
-             </table>
-            
-             <table border="0" width="100%" cellpadding="0" cellspacing="0" bgcolor="ffffff">
-         
-                 <tr>
-                     <td align="center">
-                         <table border="0" align="center" width="590" cellpadding="0" cellspacing="0" class="container590">
-         
-                             <tr>
-                                 <td height="25" style="font-size: 25px; line-height: 25px;">&nbsp;</td>
-                             </tr>
-         
-                             <tr>
-                                 <td align="center">
-         
-                                     <table border="0" align="center" width="590" cellpadding="0" cellspacing="0" class="container590">
-         
-                                         <tr>
-                                             <td align="center" height="70" style="height:70px;">
-                                                 <a href="" style="display: block; border-style: none !important; border: 0 !important;"><img width="100" border="0" style="display: block; width: 100px;" src="http://postalmarketing.com.ar/img/logo.png" alt="" /></a>
-                                             </td>
-                                         </tr>
-                                     </table>
-                                 </td>
-                             </tr>
-         
-                             <tr>
-                                 <td height="25" style="font-size: 25px; line-height: 25px;">&nbsp;</td>
-                             </tr>
-         
-                         </table>
-                     </td>
-                 </tr>
-             </table>
-             
-         
-             <table border="0" width="100%" cellpadding="0" cellspacing="0" bgcolor="ffffff" class="bg_color">
-         
-                 <tr>
-                     <td align="center">
-                         <table border="0" align="center" width="590" cellpadding="0" cellspacing="0" class="container590">
-                             <tr>
-         
-                                 <td align="center" class="section-img">
-                                     <a href="" style=" border-style: none !important; display: block; border: 0 !important;"><img src="http://postalmarketing.com.ar/img/recibido.jpg" style="height: 300px;
-                                         width: 300px;
-                                         
-                                         background-repeat: no-repeat;
-                                         background-position: 50%;
-                                         border-radius: 50%;
-                                         background-size: 100% auto;alt=" /></a>
-         
-                                 </td>
-                             </tr>
-                             <tr>
-                                 <td height="20" style="font-size: 20px; line-height: 20px;">&nbsp;</td>
-                             </tr>
-                             <tr>
-                                 <td align="center" style="color: #343434; font-size: 24px; font-family: Quicksand, Calibri, sans-serif; font-weight:700;letter-spacing: 3px; line-height: 35px;" class="main-header">
-         
-         
-                                     <div style="line-height: 35px">
-         
-                                         Gracias! <span style="color: #5caad2;"></span>
-         
+                     <td align="left" style="background-color: #eeeeee;" bgcolor="#eeeeee">
+                         
+                                     </div>
+                                     <div style="display:inline-block; max-width:50%; min-width:100px; vertical-align:top; width:100%;" class="mobile-hide">
+                                         <table align="left" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:300px;">
+                                             <tr>
+                                                 <td align="right" valign="top" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 48px; font-weight: 400; line-height: 48px;">
+                                                     <table cellspacing="0" cellpadding="0" border="0" align="right">
+                                                         
+                                                     </table>
+                                                 </td>
+                                             </tr>
+                                         </table>
                                      </div>
                                  </td>
                              </tr>
-         
                              <tr>
-                                 <td height="10" style="font-size: 10px; line-height: 10px;">&nbsp;</td>
-                             </tr>
-         
-                             <tr>
-                                 <td align="center">
-                                     <table border="0" width="40" align="center" cellpadding="0" cellspacing="0" bgcolor="eeeeee">
+                                 <td align="center" style="padding: 35px 35px 20px 35px; background-color: #ffffff;" bgcolor="#ffffff">
+                                     <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:600px;">
                                          <tr>
-                                             <td height="2" style="font-size: 2px; line-height: 2px;">&nbsp;</td>
+                                             <td align="center" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding-top: 25px;"> <img src="https://img.icons8.com/carbon-copy/100/000000/checked-checkbox.png" width="125" height="120" style="display: block; border: 0px;" /><br>
+                                                 <h2 style="font-size: 30px; font-weight: 800; line-height: 36px; color: #333333; margin: 0;"> Gracias por su atención! </h2>
+                                             </td>
                                          </tr>
-                                     </table>
+                                         <tr>
+                                             <td align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding-top: 10px;">
+                                                 <p style="font-size: 16px; font-weight: 400; line-height: 24px; color: #777777;text-align: center">Queda a disposición su remito electronico.</p>
+                                             </td>
+                                         </tr>
+                                        
+                             </tr>
+                             <tr>
+                                 <td align="center" height="100%" valign="top" width="100%" style="padding: 0 35px 35px 35px; background-color: #ffffff;" bgcolor="#ffffff">
+                                     
                                  </td>
                              </tr>
-         
                              <tr>
-                                 <td height="20" style="font-size: 20px; line-height: 20px;">&nbsp;</td>
-                             </tr>
-         
-                             <tr>
-                                 <td align="center">
-                                     <table border="0" width="400" align="center" cellpadding="0" cellspacing="0" class="container590">
+                                 <td align="center" style=" padding: 35px; background-color: #67CAF9;" bgcolor="#1b9ba3">
+                                     <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:600px;">
                                          <tr>
-                                             <td align="center" style="color: #888888; font-size: 16px; font-family: Calibri, sans-serif; line-height: 24px;";
-         
-         
-                                                 <div style="line-height: 24px">
-         
-                                                     Descarga tu remito online.
-                                                 </div>
+                                             <td align="center" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding-top: 25px;">
+                                                 <h2 style="font-size: 24px; font-weight: 800; line-height: 30px; color: #ffffff; margin: 0;"> Haga Click en DESCARGAR. </h2>
+                                             </td>
+                                         </tr>
+                                         <tr>
+                                             <td align="center" style="padding: 25px 0 15px 0;">
+                                                 <table border="0" cellspacing="0" cellpadding="0">
+                                                     <tr>
+                                                         <td align="center" style="border-radius: 5px;" bgcolor="#66b3b7"> <a href="http://localhost/postalup/pdfsend/pdfpowerconfirmar.php?cod_orden=' .$cod_orden. '&submit=send" target="_blank" style="font-size: 18px; font-family: Open Sans, Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; border-radius: 5px; background-color: #F44336; padding: 15px 30px; border: 1px solid #F44336; display: block;">DESCARGAR</a> </td>
+                                                     </tr>
+                                                 </table>
                                              </td>
                                          </tr>
                                      </table>
                                  </td>
                              </tr>
-         
                              <tr>
-                                 <td height="25" style="font-size: 25px; line-height: 25px;">&nbsp;</td>
-                             </tr>
-         
-                             <tr>
-                                 <td align="center">
-                                     <table border="0" align="center" width="160" cellpadding="0" cellspacing="0" bgcolor="5caad2" style="">
-         
+                                 <td align="center" style="padding: 35px; background-color: #ffffff;" bgcolor="#ffffff">
+                                     <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:600px;">
+                                         
                                          <tr>
-                                             <td height="10" style="font-size: 10px; line-height: 10px;">&nbsp;</td>
-                                         </tr>
-         
-                                         <tr>
-                                             <td align="center" style="color: #ffffff; font-size: 14px; font-family:Calibri, sans-serif; line-height: 26px;">
-         
-         
-                                                 <div style="line-height: 26px;">
-                                                     <a href="http://localhost/postalup/pdfsend/pdfpowerconfirmar.php?cod_orden=' .$cod_orden. '&submit=send" style="#ffffff; text-decoration: none;">DESCARGAR</a>
-                                                 </div>
+                                             <td align="center" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 24px; padding: 5px 0 10px 0;">
+                                                 <p style="font-size: 14px; font-weight: 800; line-height: 18px; color: #333333;">
                                              </td>
                                          </tr>
-         
                                          <tr>
-                                             <td height="10" style="font-size: 10px; line-height: 10px;">&nbsp;</td>
+                                             <td align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 24px;">
+                                                 
+                                             </td>
                                          </tr>
-         
                                      </table>
                                  </td>
                              </tr>
-         
-         
                          </table>
-         
                      </td>
                  </tr>
-         
              </table>
-         
-           
-             
-         
          </body>
          
-         </html>';
+         </html>
+         
+         
+         
+         ';
          
      
          $mail->send();

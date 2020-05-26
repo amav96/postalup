@@ -18,7 +18,7 @@ $(document).ready(function(){
          }
          else
          {
-           alert('Invalid Credenciales!');
+           alert('Usuario Incorrecto!');
          }
       }
    });

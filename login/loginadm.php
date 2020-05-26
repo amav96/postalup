@@ -31,26 +31,29 @@ SESSION_START();
 <div class="text-center">
     <div class="container">
 	 <div class="abs-center">
-             <form class="form-horizontal" action="../login/validar.php" method="POST">
+             <form class="form-horizontal" action="../login/validar.php" id="loginform" method="POST">
              <section class="padre">
-              <div class="card">
-                <div class="card-body">
-		             <div class="form-group">
-		  
-		
-			 <h1>Administración</h1>
-			 <label>Usuario</label>
-			   <input type="text" class="form-control" name="usuario" id="usuario "  required>
+              <div class="card" >
+                <div class="card-body ">
+		             <div class="form-group"><div class="list-group-item">
+   
+  
+					 <img src="../img/logo.png" style="width:70px;heigth:70px;display:block;
+               margin:auto" alt="">
+			   </div>
+			   <div class="form-group">
+					 </div>
+					 <h1>Administración</h1>
+					 <div class="form-group">
+                 <input type="text" class="form-control" name="usuario" id="usuario " required>
+				 </small>
 				 </div>
-
-				 <div class="form-group">
-				 <label>Contraseña</label>
-				 <input type="text" class="form-control" name="clave" id="clave " required>
-				 <small class="form-text text-muted">Ingrese Datos</small>
+				 <input type="password" class="form-control" name="clave" id="clave " required>
+				 <small class="form-text text-muted">Ingrese usuario y clave</small>
 		  </div>
 			<div class="form-group">
 			 
-			  <button type="submit" class="btn btn-info">Ingresar</button>
+			  <button type="submit" class="loginBtn btn btn-primary" value="Login" id="loginBtn">Ingresar</button>
 		  
 		             </div>
                 </div>

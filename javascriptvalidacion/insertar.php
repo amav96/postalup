@@ -40,7 +40,7 @@ if ($fila == 0) {
 	$result = $con->query($consulta);
 	 $pass = mysqli_fetch_array($result);
 	 $_SESSION["id_orden_pass"]=$pass;
-	 //$_SESSION["id_orden_pass"]=$pass;
+	 
 	 
 
 	

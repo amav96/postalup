@@ -12,11 +12,16 @@ if(isset($_GET['submit']))
 
 $cod_orden=$_GET['cod_orden'];
  
-$productos ="SELECT e.empresa,a.serie,a.tarjeta,e.direccion,a.cable_hdmi,
-a.cable_av,a.fuente,a.control_1,a.id_orden,a.identificacion,e.nombre_cliente,
-a.horario_rec,e.password_rec,a.password_rec,e.id_recolector_2,a.id_recolector_2,a.estado_rec,a.adicional,
-e.otrosaccesorios,a.otrosaccesorios FROM express e INNER JOIN autorizar a on e.identificacion=a.identificacion
- WHERE a.id_orden_pass = '$cod_orden' GROUP BY a.serie";
+$productos ="SELECT DISTINCT empresa,id_orden,id_orden_pass,estado_rec, 
+id_recolector_2, horario_rec, identificacion,direccion, serie, 
+tarjeta, equipo, nombre_cliente, cable_hdmi, cable_av,
+ fuente, control_1,adicional,otrosaccesorios from express WHERE 
+ id_orden_pass='$cod_orden' UNION SELECT
+  empresa,id_orden,id_orden_pass
+ ,estado_rec,id_recolector_2, horario_rec, identificacion,direccion, 
+ serie, tarjeta, equipo, nombre_cliente, cable_hdmi, cable_av,
+  fuente, control_1,adicional,otrosaccesorios FROM autorizar WHERE 
+  id_orden_pass='$cod_orden';";
 
 $result = $conn->query($productos);
 $productos2 = mysqli_fetch_array($result);
@@ -108,10 +113,10 @@ if($productos2>0);
     
     $pdf->SetY(74);
     
-    $pdf->Cell(6,6,'',0,0,'C');
+    $pdf->Cell(-3,6,'',0,0,'C');
     $pdf->Cell(80,7,$productos2['id_recolector_2'],0,0,'C');
-    $pdf->Cell(-94,6,'',0,0,'C');
-    $pdf->Cell(63.5,7,$productos2['password_rec'],0,0,'C');
+    $pdf->Cell(-88,6,'',0,0,'C');
+    $pdf->Cell(63.5,7,$productos2['id_orden_pass'],0,0,'C');
 
     $pdf->Ln(2);
     $pdf->Cell(-46.2,6,'',0,0,'C');

@@ -33,9 +33,9 @@
               <div class="card">
                 <div class="card-body">
 		             <div class="form-group">
-		  
-		
-			 <h1>Cliente</h1>
+					 <img src="../img/logo.png" style="width:70px;heigth:70px;display:block;
+               margin:auto" alt="">
+		       <h1>Cliente</h1>
 			   <input type="text" class="form-control" name="identificacion" id="identificacion " required>
 				 <small class="form-text text-muted">Ingrese Cliente</small>
 		  </div>

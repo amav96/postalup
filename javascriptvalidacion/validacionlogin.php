@@ -8,7 +8,7 @@ $username=mysqli_real_escape_string($con,$_POST['username']);
 //Here converting passsword into MD5 encryption. 
 
 
-$result=mysqli_query($con,"SELECT id_recolector,nombre_recolector FROM recolectores WHERE id_recolector='$username'");
+$result=mysqli_query($con,"SELECT id FROM recolectores WHERE id='$username'");
 
 $count=mysqli_num_rows($result);
 $row=mysqli_fetch_array($result,MYSQLI_ASSOC);

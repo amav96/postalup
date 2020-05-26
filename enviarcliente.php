@@ -60,20 +60,11 @@ header('Location:..login/loginrecolector.php');
             <div class="row">
                 <!-- Aquí pon las col-x necesarias, comienza tu contenido, etcétera -->
                 <div class="col-12">
-                    <h1>¡Gracias por enviar cupón!</h1>
+                    <h1>¡Remito Electrónico!</h1>
                 </div>
                 <div class="col-12">
                     <form method="POST" action="correo.php">
-                        <div class="form-group">
-                            <label>Nro Orden</label>
-                            <input  type="text" name="id_orden" class="form-control" placeholder="Nro. Orden" style="width:180px;height:38px;" value="<?php if(isset($_SESSION['id']))
-							 { echo $_SESSION['id']['id']; } ?>" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="identificacion">Identificacion Cliente</label>
-                            <input type="text" name="identificacion_cliente"  id="identificacion_cliente"
-                                class="form-control" placeholder="Identificacion Cte" style="width:180px;height:38px;"  required> 
-                        </div>
+
                         <div class="form-group">
                             <label for="orden">COD ORDEN</label>
                             <input type="text" name="cod_orden"  id="cod_orden"
@@ -90,7 +81,8 @@ header('Location:..login/loginrecolector.php');
                             <label for="asunto">Asunto</label>
                             <select name="asunto"  type="text" id="asunto"
                                 class="form-control" style="width:180px;height:38px;" required> 
-                           <option value="Cupón Express">Cupón Express</option>
+                           <option value="Remito Express">Remito Express</option>
+                           <option value="Reenvio">Reenvio Remito Express</option>
                             </select>
                         </div>
                         <div class="form-group">

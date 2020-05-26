@@ -21,8 +21,7 @@
 			})
 		}
 		$('#editProductModal').on('show.bs.modal', function (event) {
-			
-		  var button = $(event.relatedTarget) // Button that triggered the modal
+          var button = $(event.relatedTarget) // Button that triggered the modal
 		  var serie = button.data('serie') 
 		  $('#edit_serie').val(serie)
 		  var id_orden = button.data('id_orden') 
@@ -41,7 +40,26 @@
 		  $('#edit_otrosaccesorios').val(otrosaccesorios)
 		  var id = button.data('id') 
 		  $('#edit_id').val(id)
+
+		  $(function(){
+			$('#enviarveri').on('click', function(e){
+				e.preventDefault();
+				
+					 var elemento = document.getElementById("edit_id_orden").value
+					 if (elemento == ""){
+					 alert("Debes Generar un Nro de orden.")
+					 return false}
+					 var elemento = document.getElementById("edit_id_orden_pass").value
+					 if (elemento == ""){
+					 alert("Debes Generar un Nro de orden.")
+					 return false}
+					 var elemento = document.getElementById("id_recolector_2").value
+					 if (elemento == ""){
+					 alert("Debes Ingresar el id recolector.")
+					 return false}
 		})
+	})
+})
 		
 		$('#deleteProductModal').on('show.bs.modal', function (event) {
 		  var button = $(event.relatedTarget) // Button that triggered the modal
@@ -104,6 +122,7 @@
 			});
 		  event.preventDefault();
 		});
+		
 
 
 		
