@@ -18,7 +18,7 @@
 
    $obj = new conectar();
    if ($obj->conexion()){
-      echo "conectado con exito";
+      
    } else {
        echo "fallo conectar";
    }

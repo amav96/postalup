@@ -1,8 +1,12 @@
 <?php
-SESSION_START();
-if(!isset($_SESSION['logged_user'])){
-    header('location:login/loginrecolector.php');
-  }
+session_start();
+
+
+if(!empty($_SESSION['login_user']))
+{
+header('Location:..login/loginrecolector.php');
+}
+
 ?>
 
 
@@ -62,13 +66,19 @@ if(!isset($_SESSION['logged_user'])){
                     <form method="POST" action="correo.php">
                         <div class="form-group">
                             <label>Nro Orden</label>
-                            <input  type="text" name="id_orden" class="form-control" placeholder="Nro. Orden" style="width:180px;height:38px;" value="<?php if(isset($_SESSION['id_order']))
-							 { echo $_SESSION['id_order']; } ?>" required>
+                            <input  type="text" name="id_orden" class="form-control" placeholder="Nro. Orden" style="width:180px;height:38px;" value="<?php if(isset($_SESSION['id']))
+							 { echo $_SESSION['id']['id']; } ?>" required>
                         </div>
                         <div class="form-group">
                             <label for="identificacion">Identificacion Cliente</label>
                             <input type="text" name="identificacion_cliente"  id="identificacion_cliente"
-                                class="form-control" placeholder="Identificacion Cte" style="width:180px;height:38px;" required> 
+                                class="form-control" placeholder="Identificacion Cte" style="width:180px;height:38px;"  required> 
+                        </div>
+                        <div class="form-group">
+                            <label for="orden">COD ORDEN</label>
+                            <input type="text" name="cod_orden"  id="cod_orden"
+                                class="form-control" placeholder="COD ORDEN" style="width:180px;height:38px;" value="<?php if(isset($_SESSION['id_orden_pass']))
+							 { echo $_SESSION['id_orden_pass']['id_orden_pass']; } ?>" required> 
                         </div>
                         <div class="form-group">
                             <label for="correo">Correo</label>

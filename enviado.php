@@ -1,12 +1,12 @@
 <?php
 //include 'conexion.php';
-SESSION_START();
+session_start();
 
-if(!isset($_SESSION['logged_user'])){ 
-    header('location:login/loginrecolector.php');
-  } if(!isset($_SESSION['logged_user'])){
-    header('location:login/loginrecolector.php');
-  }
+
+if(!empty($_SESSION['login_user']))
+{
+header('Location:..login/loginrecolector.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -58,7 +58,7 @@ if(!isset($_SESSION['logged_user'])){
     	<div class="container">
 			<div class="abs-center">
       <div class="form-group">
-      <form class="form-horizontal" action="datoscliente.php" method="POST">
+      <form class="form-horizontal" action="enviarcliente.php" method="POST">
       <input type="submit" name="seguir" value="Volver Atras" class="btn btn-info"> 
       </form>
       </div>

@@ -1,12 +1,6 @@
 <?php
 //include 'conexion.php';
-SESSION_START();
 
-if(!isset($_SESSION['cupon'])){ 
-    header('location:login/logincupon.php');
-  } if(!isset($_SESSION['cupon'])){
-    header('location:login/logincupon.php');
-  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -81,13 +75,11 @@ if(!isset($_SESSION['cupon'])){
 <a href="#" id="show">Click aqui</a>
 <div id="element" style="display: none;">
    <div id="close"><a href="#" id="hide">Volver Atras</a></div>
-   <form  action="pdfsend/pdfpowerconfirmar.php" method="POST" style="margin:0; float:left;">
+   <form  action="pdfsend/pdfpowerconfirmar.php" method="GET" style="margin:0; float:left;">
       <div class="form-group mx-sm-3 mb-2">
-      <label>¡Ingrese su numero de orden <br>
-      y su numero de identificación!</label>
-         <input type="text" class="form-control"  name="id_orden" id="id_orden" placeholder="Nro Orden" style="width:150px;height:40px" required>
-         <input type="text" class="form-control"  name="identificacion" id="identificacion" placeholder="Identificación" style="width:150px;height:40px" required>
-         <button type="submit" name="submit" id="enviar-btn" class="btn btn-danger">CUPÓN PDF</button>
+         
+         <input type="text" class="form-control"  name="codigo" id="codigo"  style="width:150px;height:40px" required>
+         <button type="submit" name="send" id="enviar-btn" class="btn btn-danger">CUPÓN PDF</button>
          
       </div>
       </form>

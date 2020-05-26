@@ -1,6 +1,7 @@
 <?php
 session_start();
-print_r($_SESSION);
+
+
 if(!empty($_SESSION['login_user']))
 {
 header('Location:..login/loginrecolector.php');
@@ -117,7 +118,7 @@ require_once "procesos/metodoMostrar.php"
       <div class='col-sm-4 pull-right' style="position:inherit;">
         <div id="custom-search-input" style="position:inherit;">
           <div class="input-group col-md-12" style="position:inherit;">
-            <input type="text" class="form-control" placeholder="Buscar Cliente"  id="q" style="position:inherit;height:27.5px;"/>
+            <input type="text" class="form-control" placeholder="Buscar Cliente"  id="q" style="position:inherit;height:33.5px;"/>
             <span class="input-group-btn">
               <button class="btn btn-danger" type="button" onclick="load(1);">
                 <span class="glyphicon glyphicon-search"></span>
@@ -168,9 +169,11 @@ window.onblur=window.onmousemove=function() {
 	$(".btn-success").click(function(){
 
 $("input[name=id_orden]").val($("#order").text().trim());
+$("input[name=id_orden_pass]").val($("#order").text().trim());
 
 });
 </script>
+
 
 
 </script>

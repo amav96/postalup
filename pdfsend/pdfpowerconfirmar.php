@@ -6,23 +6,22 @@ require '../abrir_conexion_cliente.php';
 
 
 
-if(isset($_POST['submit']))
+if(isset($_GET['submit']))
 { require '../abrir_conexion_cliente.php';
   
-$identificacion=$_POST['identificacion'];
-$id_orden=$_POST['id_orden'];
-$acentos = $conn->query("SET NAMES 'utf8'");  
+
+$cod_orden=$_GET['cod_orden'];
+ 
 $productos ="SELECT e.empresa,a.serie,a.tarjeta,e.direccion,a.cable_hdmi,
 a.cable_av,a.fuente,a.control_1,a.id_orden,a.identificacion,e.nombre_cliente,
 a.horario_rec,e.password_rec,a.password_rec,e.id_recolector_2,a.id_recolector_2,a.estado_rec,a.adicional,
 e.otrosaccesorios,a.otrosaccesorios FROM express e INNER JOIN autorizar a on e.identificacion=a.identificacion
- WHERE a.id_orden = '$id_orden' and a.identificacion='$identificacion'  GROUP BY a.serie;";
-$acentos = $conn->query("SET NAMES 'utf8'");
+ WHERE a.id_orden_pass = '$cod_orden' GROUP BY a.serie";
+
 $result = $conn->query($productos);
-if (mysqli_affected_rows($conn)>0){
+$productos2 = mysqli_fetch_array($result);
     
-    
-if($productos2= $result->fetch_array())
+if($productos2>0);
 {
     $pdf = new FPDF('P', 'mm', array(100,75));
     $pdf->AddPage();
@@ -158,21 +157,11 @@ if($productos2= $result->fetch_array())
     $pdf->SetDrawColor(255,255,255);
     $pdf->Ln(7.8);
     
-    
-    
-   
-    
-    
-
-    
-    //Creamos las celdas para los titulo de cada columna y le asignamos un fondo gris y el tipo de letra
-    
-
-
+  
 }
 
 
-    while($productos2= $result->fetch_array())
+    while($productos2=$result->fetch_array())
 {
     
 
@@ -190,19 +179,19 @@ if($productos2= $result->fetch_array())
    
    
     $pdf->Ln(3.5);
-
-
-}
-
+    
+    
 
 }
-
-
+}
 else {
     echo "<div class='container'><div class='alert alert-info'>¡Consulta Incorrecta! ¡Intente nuevamente!</div></div>";
  }
- $pdf->Output();
-}
+ $pdf->Output('Remito.pdf', 'D');
+
+
+
+ 
 
  
 

@@ -33,6 +33,7 @@
                  if ($resultados->num_rows > 0) {
                      while ($row= mysqli_fetch_array($resultados)) {
                          $ret = $row['id'];
+                         $_SESSION["id"]=$row;
                      }
                      mysqli_free_result($resultados);
                  }

@@ -18,7 +18,7 @@
 	$otrosaccesorios = $_POST['edit_otrosaccesorios'];
 
 	
-	$id_recolector_password = password_hash($id_recolector_password, PASSWORD_DEFAULT);
+	$id_recolector_password = md5($id_recolector_password);
 	// UPDATE data into database
     $sql = "UPDATE express SET serie='".$serie."',
 	                           id_orden='".$id_orden."',

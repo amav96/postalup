@@ -1,4 +1,7 @@
-<?php require_once('./conexion.php');?>
+<?php
+ require_once('./conexion.php');
+
+ ?>
 <link rel="stylesheet" href="./css/alert.css">
 
 
@@ -17,6 +20,7 @@ $(function(){
              return false}
 
         var id_recolector = $('#id_recolector').val();
+        var id_orden_pass = $('#id_orden_pass').val();
         var serie = $('#serie').val(); //los # son los id
         var identificacion = $('#identificacion').val();
         var id_orden = $('#id_orden').val();
@@ -34,9 +38,10 @@ $(function(){
         $.ajax({
             type:"POST",
             url: "./javascriptvalidacion/insertar.php",
-            data: {'id_recolector': id_recolector, 
-                'serie':serie, 
-                'identificacion':identificacion,
+            data: {'id_recolector': id_recolector,
+                   'id_orden_pass': id_orden_pass, 
+                   'serie':serie, 
+                   'identificacion':identificacion,
                    'id_orden':id_orden,
                    'estado':estado,
                    'horario_rec':horario_rec,
@@ -137,6 +142,7 @@ $(function(){
 							<input type="text" name="id_orden"  id="id_orden" class="form-control"  required>
 							
 						</div>
+
 						
 						<div class="form-group">
 	                    <input class="form-control" type="hidden" name="horario_rec" id="horario_rec" value="<?php date_default_timezone_set('America/Argentina/Buenos_Aires'); echo date("Y-m-d H:i:s");?>" readonly>
@@ -147,15 +153,18 @@ $(function(){
 							    { echo $_SESSION['username']['username']; } ?>"  required>
 							
 						</div>
+						<input type="text" name="id_orden_pass"  id="id_orden_pass" class="form-control"  required>
 					</div>
 					<div class="modal-footer">
 					   <div class="form-group">
 					   <div id="alert"><img id="imagen" src="img/cargando.gif" alt="">
 						<span id="mensajes"></span>
+
+
 					   </div>
 					   </div>
 						<input type="button" class="btn btn-danger" data-dismiss="modal" value="Salir">
-						<input type="submit" id="enviar" class="btn btn-success" value="Guardar datos">
+						<input type="submit" id="enviar" name="enviar" class="btn btn-success" value="Guardar datos">
 					   
 						
 					</div>
